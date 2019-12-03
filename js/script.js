@@ -27,7 +27,9 @@ const $creditCard = $('#credit-card')
 const $paypal = $('#paypal');
 const $bitcoin = $('#bitcoin');
 const $paymentOption = $('#payment');
+$paymentOption.val('credit card');
 $('#payment option:eq(0)').attr('disabled', true);
+
 
 // Validation Variables
 
@@ -131,6 +133,7 @@ $activities.change(function(e) {
 // When the item is selected from the list it'll toggle the correct payment
 // method, if 'credit card' is selected, credit card is validated
 $paymentOption.change(function() {
+
     if ($(this).val() === 'credit card') {
         $creditCard.show();
         $paypal.hide();
@@ -259,20 +262,28 @@ $('#mail').keyup(function() {
     email();
 });
 
-$('form').submit(function(e) {
-    e.preventDefault();
-    name();
-    email();
-    activity();
-    if ($('#title').val() === 'other') {
-        other();
 
+$('form').submit(function(e) {
+
+    if (name() === true) {
+        e.preventDefault();
+    }
+    if (email() === true) {
+        e.preventDefault();
+    }
+    if (activity() === true) {
+        e.preventDefault();
+    }
+    if ($('#title').val() === 'other') {
+        if (other() === true) {
+            e.preventDefault();
+        }
     }
     if ($('#payment').val() === 'credit card') {
-        creditCard();
-        zipcode();
-        cvv();
 
+        if (creditCard() === true) {
+            e.preventDefault();
+        }
     }
 
 });
