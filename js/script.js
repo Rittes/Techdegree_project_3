@@ -163,7 +163,7 @@ function name() {
     }
 }
 
-function validateEmail() {
+function email() {
     const $emailInput = $('#mail');
     const regex = /^[^@]+@[^@.]+\.[a-z]{3}$/i;
     if (!(regex.test($("#mail").val()))) {
@@ -256,13 +256,13 @@ $('#name').keyup(function() {
 });
 
 $('#mail').keyup(function() {
-    validateEmail();
+    email();
 });
 
 $('form').submit(function(e) {
     e.preventDefault();
     name();
-    validateEmail();
+    email();
     activity();
     if ($('#title').val() === 'other') {
         other();
