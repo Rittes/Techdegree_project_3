@@ -195,17 +195,16 @@ function other() {
 }
 
 function activity() {
-    $activitiesInput.each(function() {
-        if (!($activitiesInput).prop('checked')) {
-            $activities.css('color', 'red');
-            $activitySpan.show();
-            return true;
-        } else {
-            $activities.css('color', 'black');
-            $activitySpan.hide();
-            return false;
-        }
-    });
+    if (totalCost === 0) {
+        $activities.css('color', 'red');
+        $activitySpan.show();
+        return true;
+    } else {
+        $activities.css('color', 'black');
+        $activitySpan.hide();
+        return false;
+    }
+
 }
 
 function creditCard() {
@@ -279,6 +278,7 @@ $('#mail').keyup(function() {
 $('form').submit(function(e) {
     if (name() === true) {
         e.preventDefault();
+        //console.log(name());
     }
     if (email() === true) {
         e.preventDefault();
