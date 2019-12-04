@@ -24,11 +24,15 @@ $activities.append($totalDiv);
 // Payment Variables
 
 const $creditCard = $('#credit-card')
+const $creditCardInput = $('#cc-num');
+const $zipcodeInput = $('#zip');
+const $cvvInput = $('#cvv');
 const $paypal = $('#paypal');
 const $bitcoin = $('#bitcoin');
 const $paymentOption = $('#payment');
 $paymentOption.val('credit card');
-$('#payment option:eq(0)').attr('disabled', true);
+$('#payment option:eq(0)').remove();
+$('#payment option:eq(0)').attr('selected', true);
 
 
 // Validation Variables
@@ -137,7 +141,8 @@ $paymentOption.change(function() {
         $creditCard.show();
         $paypal.hide();
         $bitcoin.hide();
-        validateCreditCard();
+
+        console.log('here');
     }
     if ($(this).val() === 'paypal') {
         $creditCard.hide();
@@ -210,14 +215,18 @@ function activity() {
     }
 
 }
+const $creditCardSpan2 = $('<span class="validation">You must fill your credit card information</span>');
+$creditCardSpan2.insertBefore('#cc-num');
+$creditCardSpan2.hide();
 
 function creditCard() {
-    const $creditCardInput = $('#cc-num');
+
     const regex = /^[\d]{4}[\d]{4}[\d]{4}[\d]{4}$/;
     if (!regex.test($("#cc-num").val())) {
         $creditCardInput.addClass('error');
         $creditCardSpan.show();
         return true;
+
     } else {
         $creditCardInput.removeClass('error');
         $creditCardSpan.hide();
@@ -228,7 +237,7 @@ function creditCard() {
 }
 
 function zipcode() {
-    const $zipcodeInput = $('#zip');
+
     const regex = /^[\d]{5}$/;
     if (!regex.test($("#zip").val())) {
         $zipcodeInput.addClass('error');
@@ -243,7 +252,7 @@ function zipcode() {
 }
 
 function cvv() {
-    const $cvvInput = $('#cvv');
+
     const regex = /^[\d]{3}$/;
     if (!regex.test($("#cvv").val())) {
         $cvvInput.addClass('error');
@@ -252,13 +261,25 @@ function cvv() {
     } else {
         $cvvInput.removeClass('error');
         $cvvSpan.hide();
+        $('#exp-month').focus()
         return false;
+    }
+}
+
+function secondErrorMessage() {
+    if ($creditCardInput.val().length < 1) {
+        $creditCardSpan.hide()
+        $creditCardSpan2.show();
+    } else {
+        $creditCardSpan2.hide();
+
     }
 }
 
 function validateCreditCard() {
     $('#cc-num').keyup(function() {
         creditCard();
+        secondErrorMessage();
     });
     $('#zip').keyup(function() {
         zipcode();
@@ -267,6 +288,7 @@ function validateCreditCard() {
         cvv();
     });
 }
+validateCreditCard();
 
 // Listeners
 
@@ -299,13 +321,18 @@ $('form').submit(function(e) {
     if ($('#payment').val() === 'credit card') {
         if (creditCard() === true) {
             e.preventDefault();
+
         }
         if (zipcode() === true) {
             e.preventDefault();
+
         }
         if (cvv() === true) {
             e.preventDefault();
+
         }
+        secondErrorMessage();
     }
+
 
 });
