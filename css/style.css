@@ -16,11 +16,14 @@ button {
 body {
     font: 1em/1.5;
     color: rgba(6, 49, 68, 0.9);
-    background: #CDE0FB;
+    background: #4484CE;
 }
 
 header {
     text-align: center;
+    color: #F9CF00;
+    letter-spacing: 3px;
+    text-shadow: 0 1px 2px #000;
 }
 
 h1 {
@@ -40,9 +43,10 @@ a {
 
 form {
     padding: .875em 1.875em 1.875em;
-    background: #9BBEEF;
+    background: #D9D9D9;
     border: 2px solid rgba(8, 63, 87, 0.6);
     border-radius: 3px;
+    box-shadow: 1px 1px 20px 3px rgb(43, 42, 42);
 }
 
 fieldset,
@@ -64,7 +68,7 @@ button {
 legend {
     font-weight: bold;
     padding-top: .5em;
-    border-top: 2px solid rgba(8, 63, 87, 0.6);
+    border-top: 2px solid #4484CE;
     margin-bottom: 1.125em;
 }
 
@@ -89,8 +93,8 @@ input {
     font-size: 1em;
     font-weight: 500;
     padding: .8em;
-    background: #e9f6fb;
-    border: 2px solid rgb(111, 157, 220);
+    background: #dde3e6;
+    border: 2px solid #4484CE;
     border-radius: 3px;
     outline: none;
 }
@@ -108,10 +112,10 @@ input[type="radio"] {
 button {
     color: #fff;
     padding: .55em 1.25em;
-    background: #083f57;
+    background: #F19F4D;
     margin: 1.25em 0 .5em;
     cursor: pointer;
-    border: 2px solid black;
+    border: 2px solid rgb(124, 67, 1);
     border-radius: 4px;
     transition: all 0.5s;
 }

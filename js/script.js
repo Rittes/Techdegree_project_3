@@ -114,7 +114,6 @@ $activities.change(function(e) {
             if ($clicked.prop('checked')) {
                 $checkedBox.attr('disabled', true);
                 $checkedBox.parent().addClass('disable-label');
-
             } else {
                 $checkedBox.attr('disabled', false);
                 $checkedBox.parent().removeClass('disable-label');
@@ -160,9 +159,11 @@ function name() {
     if ($nameInput.val().length === 0) {
         $nameInput.addClass('error');
         $nameSpan.show();
+        return true;
     } else {
         $nameInput.removeClass('error');
         $nameSpan.hide();
+        return false;
     }
 }
 
@@ -172,9 +173,11 @@ function email() {
     if (!(regex.test($("#mail").val()))) {
         $emailInput.addClass('error');
         $emailSpan.show();
+        return true;
     } else {
         $emailInput.removeClass('error');
         $emailSpan.hide();
+        return false;
     }
 
 }
@@ -183,9 +186,11 @@ function other() {
     if ($otherInput.val().length === 0) {
         $otherInput.addClass('error');
         $otherSpan.show();
+        return true;
     } else {
         $otherInput.removeClass('error');
         $otherSpan.hide();
+        return false;
     }
 }
 
@@ -194,9 +199,11 @@ function activity() {
         if (!($activitiesInput).prop('checked')) {
             $activities.css('color', 'red');
             $activitySpan.show();
+            return true;
         } else {
             $activities.css('color', 'black');
             $activitySpan.hide();
+            return false;
         }
     });
 }
@@ -207,10 +214,12 @@ function creditCard() {
     if (!regex.test($("#cc-num").val())) {
         $creditCardInput.addClass('error');
         $creditCardSpan.show();
+        return true;
     } else {
         $creditCardInput.removeClass('error');
         $creditCardSpan.hide();
         $('#zip').focus()
+        return false;
     }
 
 }
@@ -221,10 +230,12 @@ function zipcode() {
     if (!regex.test($("#zip").val())) {
         $zipcodeInput.addClass('error');
         $zipcodeSpan.show();
+        return true;
     } else {
         $zipcodeInput.removeClass('error');
         $zipcodeSpan.hide();
         $('#cvv').focus();
+        return false;
     }
 }
 
@@ -234,9 +245,11 @@ function cvv() {
     if (!regex.test($("#cvv").val())) {
         $cvvInput.addClass('error');
         $cvvSpan.show();
+        return true;
     } else {
         $cvvInput.removeClass('error');
         $cvvSpan.hide();
+        return false;
     }
 }
 
@@ -264,7 +277,6 @@ $('#mail').keyup(function() {
 
 
 $('form').submit(function(e) {
-
     if (name() === true) {
         e.preventDefault();
     }
@@ -280,8 +292,13 @@ $('form').submit(function(e) {
         }
     }
     if ($('#payment').val() === 'credit card') {
-
         if (creditCard() === true) {
+            e.preventDefault();
+        }
+        if (zipcode() === true) {
+            e.preventDefault();
+        }
+        if (cvv() === true) {
             e.preventDefault();
         }
     }
