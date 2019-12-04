@@ -154,6 +154,10 @@ $paymentOption.change(function() {
 
 // Validating Functions
 
+// These functions check if input meets requirements for submition
+// If they don't, user will get an error. If it they do meet requirements
+// the function returs false and allows the user to submit the form
+
 function name() {
     const $nameInput = $('#name');
     if ($nameInput.val().length === 0) {
@@ -274,11 +278,12 @@ $('#mail').keyup(function() {
     email();
 });
 
+// If any validation function returns true the form will not submit and will
+// show an error. If no functions return true the form submits.
 
 $('form').submit(function(e) {
     if (name() === true) {
         e.preventDefault();
-        //console.log(name());
     }
     if (email() === true) {
         e.preventDefault();
