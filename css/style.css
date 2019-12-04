@@ -28,7 +28,7 @@ header {
 
 h1 {
     font-size: 2.5em;
-    text-shadow: 0 1px 0 #000;
+    text-shadow: 0 1px 3px #000;
     margin: 0;
 }
 
@@ -93,8 +93,8 @@ input {
     font-size: 1em;
     font-weight: 500;
     padding: .8em;
-    background: #dde3e6;
-    border: 2px solid #4484CE;
+    background: #e2edf0;
+    border: 2px solid rgb(93, 160, 236);
     border-radius: 3px;
     outline: none;
 }
@@ -115,13 +115,13 @@ button {
     background: #F19F4D;
     margin: 1.25em 0 .5em;
     cursor: pointer;
-    border: 2px solid rgb(124, 67, 1);
+    border: 2px solid rgb(218, 153, 80);
     border-radius: 4px;
     transition: all 0.5s;
 }
 
 button:hover {
-    background: #6F9DDC;
+    background: rgb(248, 194, 141);
 }
 
 input,
