@@ -221,7 +221,7 @@ $creditCardSpan2.hide();
 
 function creditCard() {
 
-    const regex = /^[\d]{4}[\d]{4}[\d]{4}[\d]{4}$/;
+    const regex = /^[\d]{4}[\d]{4}[\d]{4}[\d]{1,4}$/;
     if (!regex.test($("#cc-num").val())) {
         $creditCardInput.addClass('error');
         $creditCardSpan.show();
@@ -230,7 +230,7 @@ function creditCard() {
     } else {
         $creditCardInput.removeClass('error');
         $creditCardSpan.hide();
-        $('#zip').focus()
+
         return false;
     }
 
